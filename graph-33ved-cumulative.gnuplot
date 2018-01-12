@@ -18,7 +18,7 @@ set key off
 set ytics add ('$\mathsf{8140}$' 8140) add ('' 8000)
 
 plot \
-    "../experiments/gpgnode-results/mcs33ved/runtimes.data" u 2:($2>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{1mm}{clique}' at end lc 3 lw 3, \
-    "../experiments/gpgnode-results/mcs33ved/runtimes.data" u ($4*1000):($4>=1e3?1e-10:1) smooth cumulative w l ti 'CP-MAC' at end lc 4 lw 3, \
-    "../experiments/gpgnode-results/mcs33ved/runtimes.data" u 7:($7>=1e6?1e-10:1) smooth cumulative w l ti 'McSplit' at end lc 1 lw 3
+    "data/mcs33ved-runtimes.data" u 2:($2>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{1mm}{clique}' at end lc 3 lw 3, \
+    "data/mcs33ved-runtimes.data" u ($4*1000):($4>=1e3?1e-10:1) smooth cumulative w l ti 'CP-MAC' at end lc 4 lw 3, \
+    "data/mcs33ved-runtimes.data" u 7:($7>=1e6?1e-10:1) smooth cumulative w l ti 'McSplit' at end lc 1 lw 3
 

@@ -18,8 +18,8 @@ set ytics add ('$\mathsf{4110}$' 4110) add ('' 4000)
 set key off
 
 plot \
-    "../experiments/gpgnode-results/mcsplain/runtimes.data" u 8:($8>=1e6?1e-10:1) smooth cumulative w l ti 'McSplit' at end lc 1 lw 3, \
-    "../experiments/gpgnode-results/mcsplain/runtimes.data" u 5:($5>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{1.7mm}{$k{\downarrow}$}' at end lc 2 lw 3, \
-    "../experiments/gpgnode-results/mcsplain/runtimes.data" u 2:($2>=1e6?1e-10:1) smooth cumulative w l ti 'clique' at end lc 3 lw 3, \
-    "../experiments/gpgnode-results/mcsplain/runtimes.data" u ($3*1000):($3>=1e3?1e-10:1) smooth cumulative w l ti '\raisebox{-1mm}{CP-FC}' at end lc 4 lw 3
+    "data/mcsplain-runtimes.data" u 8:($8>=1e6?1e-10:1) smooth cumulative w l ti 'McSplit' at end lc 1 lw 3, \
+    "data/mcsplain-runtimes.data" u 5:($5>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{1.7mm}{$k{\downarrow}$}' at end lc 2 lw 3, \
+    "data/mcsplain-runtimes.data" u 2:($2>=1e6?1e-10:1) smooth cumulative w l ti 'clique' at end lc 3 lw 3, \
+    "data/mcsplain-runtimes.data" u ($3*1000):($3>=1e3?1e-10:1) smooth cumulative w l ti '\raisebox{-1mm}{CP-FC}' at end lc 4 lw 3
 

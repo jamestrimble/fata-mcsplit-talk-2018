@@ -24,10 +24,10 @@ set format y '$\mathsf{10^{%T}}$'
 set format cb '$\mathsf{%h}$'
 set logscale cb
 
-load "../paper/magmafromwhite-adjusted-for-heatmaps.pal"
+load "magmafromwhite-adjusted-for-heatmaps.pal"
 set palette negative
 
 plot \
-    "../paper/mcsplain-james-versus-cp-fc-heatmap.data.adjusted" u 2:1:3 matrix w image axes x2y2 notitle, \
+    "mcsplain-james-versus-cp-fc-heatmap.data.adjusted" u 2:1:3 matrix w image axes x2y2 notitle, \
     x w l ls 0 notitle
 

@@ -18,8 +18,8 @@ set ytics add ('$\mathsf{5725}$' 5725)
 set key off
 
 plot \
-    "../experiments/gpgnode-results/sip/runtimes.data" u 2:($2>=1e6?1e-10:1) smooth cumulative w l ti 'clique' at end lc 3 lw 3, \
-    "../experiments/gpgnode-results/sip/runtimes.data" u ($3*1000):($3>=1e3?1e-10:1) smooth cumulative w l ti '\raisebox{-.4mm}{CP-FC}' at end lc 4 lw 3, \
-    "../experiments/gpgnode-results/sip/runtimes.data" u 4:($4>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{-1mm}{k${\downarrow}$}' at end lc 2 lw 3, \
-    "../experiments/gpgnode-results/sip/runtimes.data" u 5:($5>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{.4mm}{McSplit}' at end lc 1 lw 3, \
-    "../experiments/gpgnode-results/sip/runtimes.data" u 6:($6>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{1mm}{McSplit${\downarrow}$}' at end lc 7 lw 3
+    "data/sip-runtimes.data" u 2:($2>=1e6?1e-10:1) smooth cumulative w l ti 'clique' at end lc 3 lw 3, \
+    "data/sip-runtimes.data" u ($3*1000):($3>=1e3?1e-10:1) smooth cumulative w l ti '\raisebox{-.4mm}{CP-FC}' at end lc 4 lw 3, \
+    "data/sip-runtimes.data" u 4:($4>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{-1mm}{k${\downarrow}$}' at end lc 2 lw 3, \
+    "data/sip-runtimes.data" u 5:($5>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{.4mm}{McSplit}' at end lc 1 lw 3, \
+    "data/sip-runtimes.data" u 6:($6>=1e6?1e-10:1) smooth cumulative w l ti '\raisebox{1mm}{McSplit${\downarrow}$}' at end lc 7 lw 3
