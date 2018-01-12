@@ -48,7 +48,7 @@
 \tikzset{vertexc3/.style={vertex, fill=uofgforest, text=white}}
 \tikzset{vertexc4/.style={vertex, fill=uofgheather, text=white}}
 \tikzset{edge/.style={color=black, ultra thick}}
-\tikzset{ledge/.style={color=uofgsandstone!50!white, ultra thick}}
+\tikzset{ledge/.style={color=uofgsandstone!50!white, thick}}
 \tikzset{bedge/.style={ultra thick}}
 
 % {{{ theme things
@@ -166,7 +166,7 @@
 
 \title[A Partitioning Algorithm for Maximum Common Subgraph Problems]{A Partitioning Algorithm for \\
 Maximum Common Subgraph Problems}
-\author[Ciaran McCreesh, Patrick Prosser and James Trimble]{\textbf{Ciaran McCreesh}, Patrick
+\author[Ciaran McCreesh, Patrick Prosser and James Trimble]{Ciaran McCreesh, Patrick
 Prosser, and \\ James Trimble}
 
 \begin{document}
@@ -182,17 +182,21 @@ Prosser, and \\ James Trimble}
 }
 
 \begin{frame}{Maximum Common Subgraph}
+\begin{columns}[T]
+  \begin{column}{0.47\textwidth}
+    \centering
+    \textbf{Induced}
 
-    \begin{center}\begin{tikzpicture}
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (Na) at (1,  0)
+    \begin{center}\begin{tikzpicture}[scale=0.45]
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0)
         {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (Nb) at (1, -2)
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2)
         {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (Nc) at (1, -4)
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4)
         {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (Nd) at (3, -4)
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4)
         {\vphantom{0}};
-        \node[draw, circle, fill=white, inner sep=5pt, font=\bfseries] (Ne) at (3, -2)
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2)
         {\vphantom{0}};
 
         \draw [edge] (Na) -- (Nb);
@@ -203,15 +207,15 @@ Prosser, and \\ James Trimble}
         \draw [ledge] (Nb) -- (Ne);
         \draw [ledge] (Nd) -- (Ne);
 
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
-        \node[draw, circle, fill=white, inner sep=5pt, font=\bfseries] (N2) at (9.5,  0) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
-        \node[draw, circle, fill=white, inner sep=5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
-        \node[draw, circle, fill=white, inner sep=5pt, font=\bfseries] (N7) at (5.5,  0) {\vphantom{0}};
-        \node[draw, circle, fill=white, inner sep=5pt, font=\bfseries] (N8) at (5.5, -2) {\vphantom{0}};
-        \node[draw, circle, fill=white, inner sep=5pt, font=\bfseries] (N9) at (5.5, -4) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N2) at (9.5,  0) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N7) at (5.5,  0) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N8) at (5.5, -2) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N9) at (5.5, -4) {\vphantom{0}};
 
         \draw [ledge] (N1) -- (N2);
         \draw [edge] (N1) -- (N3);
@@ -227,7 +231,58 @@ Prosser, and \\ James Trimble}
         \draw [ledge] (N7) -- (N8);
         \draw [ledge] (N8) -- (N9);
     \end{tikzpicture}\end{center}
+  \end{column}
 
+  \begin{column}{0.47\textwidth}
+    \centering
+    \textbf{Partial}
+
+    \begin{center}\begin{tikzpicture}[scale=0.45]
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0)
+        {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2)
+        {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4)
+        {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4)
+        {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2)
+        {\vphantom{0}};
+
+        \draw [edge] (Na) -- (Nb);
+        \draw [edge] (Nb) -- (Nc);
+        \draw [edge] (Nc) -- (Nd);
+        \draw [edge] (Nb) -- (Nd);
+        \draw [edge] (Na) -- (Ne);
+        \draw [ledge] (Nb) -- (Ne);
+        \draw [edge] (Nd) -- (Ne);
+
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N2) at (9.5,  0) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N7) at (5.5,  0) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N8) at (5.5, -2) {\vphantom{0}};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N9) at (5.5, -4) {\vphantom{0}};
+
+        \draw [ledge] (N1) -- (N2);
+        \draw [edge] (N1) -- (N3);
+        \draw [edge] (N1) -- (N4);
+        \draw [ledge] (N2) -- (N4);
+        \draw [edge] (N3) -- (N5);
+        \draw [edge] (N3) -- (N6);
+        \draw [edge] (N4) -- (N6);
+        \draw [edge] (N5) -- (N6);
+        \draw [ledge] (N2) to [in=45, out=315] (N6);
+        \draw [ledge] (N1) -- (N7);
+        \draw [ledge] (N5) -- (N9);
+        \draw [ledge] (N7) -- (N8);
+        \draw [ledge] (N8) -- (N9);
+    \end{tikzpicture}\end{center}
+  \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Previous Algorithms}
@@ -269,6 +324,19 @@ Prosser, and \\ James Trimble}
             partitions
         \item Propagation is just refining partitions
         \item Soft all-different can be calculated by counting rather than matching
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Up or Down?}
+    \begin{itemize}
+        \item In our branch and bound algorithm, we try to find larger and larger common subgraphs
+        \item We can go in the opposite direction (``McSplit-down'')
+          \begin{itemize}
+            \item first look for a common subgraph that uses all vertices in the smaller graph
+            \item if that fails, look for a common subgraph that uses all but one of the vertices
+            \item \dots and so on
+          \end{itemize}
+        \item TODO: binary search???
     \end{itemize}
 \end{frame}
 
@@ -323,6 +391,12 @@ Prosser, and \\ James Trimble}
         \item Maximum common \textbf{connected} subgraph
     \end{itemize}
 
+\end{frame}
+
+\begin{frame}{McSplit for Maximum Common Partial Subgraph?}
+    \begin{itemize}
+        \item 
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[plain,noframenumbering]
