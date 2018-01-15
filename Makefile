@@ -1,4 +1,4 @@
-all : tables graphs
+all : tables graphs scripts/clique_encoding.tex
 	latexmk -pdf -pdflatex='pdflatex -interaction=nonstopmode %O %S' talk
 
 TABLES =
@@ -16,6 +16,8 @@ graphs : $(GRAPHS)
 gen-graph-%.tex : graph-%.gnuplot
 	gnuplot $<
 
+scripts/clique_encoding.tex: scripts/make_clique_encoding.py
+	python scripts/make_clique_encoding.py > scripts/clique_encoding.tex
 
 clean :
-	rm *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log gen-graph* talk.pdf
+	rm *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log gen-graph* talk.pdf scripts/clique_encoding.tex

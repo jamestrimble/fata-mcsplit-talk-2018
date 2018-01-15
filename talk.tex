@@ -48,6 +48,7 @@
 \tikzset{vertexc3/.style={vertex, fill=uofgforest, text=white}}
 \tikzset{vertexc4/.style={vertex, fill=uofgheather, text=white}}
 \tikzset{edge/.style={color=black, ultra thick}}
+\tikzset{lledge/.style={color=uofgsandstone!50!white, thin}}
 \tikzset{ledge/.style={color=uofgsandstone!50!white, thick}}
 \tikzset{bedge/.style={ultra thick}}
 
@@ -73,7 +74,7 @@
 
 \newcommand{\exampleG} {
     \tikz {
-        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+        \graph [nodes={draw, circle, minimum width=.4cm, inner sep=1pt}, circular placement, radius=0.6cm,
                 clockwise=5] {
                     1,2,3,4,5;
             1--4; 1--5; 2--3; 2--5; 3--5;
@@ -82,7 +83,7 @@
 }
 \newcommand{\exampleH} {
     \tikz {
-        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+        \graph [nodes={draw, circle, minimum width=.4cm, inner sep=1pt}, circular placement, radius=0.6cm,
                 clockwise=6, phase=60] {
                     a,b,c,d,e,f;
             a--b; a--c; a--e; b--d; b--f; c--d; c--e; c--f; d--f; e--f;
@@ -483,6 +484,8 @@ Prosser, and \\ James Trimble}
       \qquad
       \exampleH
   \end{figure}
+
+  \include{scripts/clique_encoding}
 \end{frame}
 
 \begin{frame}{CP Model}

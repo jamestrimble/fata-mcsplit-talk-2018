@@ -11,3 +11,6 @@ gen-*
 *.snm
 *.toc
 !UoG_keyline.pdf
+scripts/*.pyc
+scripts/clique_encoding.tex
+scripts/clique_encoding.aux
