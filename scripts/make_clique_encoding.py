@@ -43,7 +43,7 @@ def print_edges(bold_edges):
         for j in vv1:
             for k in vv0:
                 for l in vv1:
-                    if k>i:
+                    if k>i and j!=l:
                         if not bold_edges or (i,j) in clique_nodes and (k,l) in clique_nodes:
                             letter_j = "abcdef"[j]
                             letter_l = "abcdef"[l]
