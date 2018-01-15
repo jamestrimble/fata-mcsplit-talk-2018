@@ -69,6 +69,27 @@
 
 \beamertemplatenavigationsymbolsempty
 
+\usetikzlibrary{graphs}
+
+\newcommand{\exampleG} {
+    \tikz {
+        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+                clockwise=5] {
+                    1,2,3,4,5;
+            1--4; 1--5; 2--3; 2--5; 3--5;
+        };
+    }
+}
+\newcommand{\exampleH} {
+    \tikz {
+        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+                clockwise=6, phase=60] {
+                    a,b,c,d,e,f;
+            a--b; a--c; a--e; b--d; b--f; c--d; c--e; c--f; d--f; e--f;
+        };
+    }
+}
+
 \setbeamertemplate{title page}
 {
     \begin{tikzpicture}[remember picture, overlay]
@@ -181,112 +202,270 @@ Prosser, and \\ James Trimble}
     \end{frame}
 }
 
-\begin{frame}{Maximum Common Subgraph}
+\begin{frame}{Maximum Common Subgraph Problems}
 \begin{columns}[T]
   \begin{column}{0.47\textwidth}
     \centering
     \textbf{Induced}
 
     \begin{center}\begin{tikzpicture}[scale=0.45]
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0)
-        {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2)
-        {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4)
-        {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4)
-        {\vphantom{0}};
-        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2)
-        {\vphantom{0}};
+        \visible<1> {
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {\vphantom{0}};
+        }
+        \visible<2-> {
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {\vphantom{0}};
+        }
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2) {\vphantom{0}};
 
-        \draw [edge] (Na) -- (Nb);
-        \draw [edge] (Nb) -- (Nc);
-        \draw [edge] (Nc) -- (Nd);
-        \draw [edge] (Nb) -- (Nd);
+        \visible<1> {
+          \draw [ledge] (Na) -- (Nb);
+          \draw [ledge] (Nb) -- (Nc);
+          \draw [ledge] (Nc) -- (Nd);
+          \draw [ledge] (Nb) -- (Nd);
+        }
+        \visible<2-> {
+          \draw [edge] (Na) -- (Nb);
+          \draw [edge] (Nb) -- (Nc);
+          \draw [edge] (Nc) -- (Nd);
+          \draw [edge] (Nb) -- (Nd);
+        }
         \draw [ledge] (Na) -- (Ne);
         \draw [ledge] (Nb) -- (Ne);
         \draw [ledge] (Nd) -- (Ne);
 
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+        \visible<1> {
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        }
+        \visible<2-> {
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        }
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N2) at (9.5,  0) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N7) at (5.5,  0) {\vphantom{0}};
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N8) at (5.5, -2) {\vphantom{0}};
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N9) at (5.5, -4) {\vphantom{0}};
 
+        \visible<1> {
+          \draw [ledge] (N1) -- (N3);
+          \draw [ledge] (N3) -- (N5);
+          \draw [ledge] (N3) -- (N6);
+          \draw [ledge] (N5) -- (N6);
+        }
+        \visible<2-> {
+          \draw [edge] (N1) -- (N3);
+          \draw [edge] (N3) -- (N5);
+          \draw [edge] (N3) -- (N6);
+          \draw [edge] (N5) -- (N6);
+        }
         \draw [ledge] (N1) -- (N2);
-        \draw [edge] (N1) -- (N3);
         \draw [ledge] (N1) -- (N4);
-        \draw [ledge] (N2) -- (N4);
-        \draw [edge] (N3) -- (N5);
-        \draw [edge] (N3) -- (N6);
-        \draw [ledge] (N4) -- (N6);
-        \draw [edge] (N5) -- (N6);
-        \draw [ledge] (N2) to [in=45, out=315] (N6);
         \draw [ledge] (N1) -- (N7);
+        \draw [ledge] (N2) -- (N4);
+        \draw [ledge] (N2) to [in=45, out=315] (N6);
+        \draw [ledge] (N4) -- (N6);
         \draw [ledge] (N5) -- (N9);
         \draw [ledge] (N7) -- (N8);
         \draw [ledge] (N8) -- (N9);
     \end{tikzpicture}\end{center}
   \end{column}
+
+  \visible<3-> {
+    \textcolor{gray}{\vrule{}}
+  }
+
+  \hspace{10pt}
 
   \begin{column}{0.47\textwidth}
-    \centering
-    \textbf{Partial}
+    \visible<3-> {
+      \centering
+      \textbf{Partial}
 
-    \begin{center}\begin{tikzpicture}[scale=0.45]
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0)
-        {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2)
-        {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4)
-        {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4)
-        {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2)
-        {\vphantom{0}};
+      \begin{center}\begin{tikzpicture}[scale=0.45]
+        \visible<3> {
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2) {\vphantom{0}};
+        }
+        \visible<4-> {
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2) {\vphantom{0}};
+        }
 
-        \draw [edge] (Na) -- (Nb);
-        \draw [edge] (Nb) -- (Nc);
-        \draw [edge] (Nc) -- (Nd);
-        \draw [edge] (Nb) -- (Nd);
-        \draw [edge] (Na) -- (Ne);
-        \draw [ledge] (Nb) -- (Ne);
-        \draw [edge] (Nd) -- (Ne);
+        \visible<3> {
+          \draw [ledge] (Na) -- (Nb);
+          \draw [ledge] (Na) -- (Ne);
+          \draw [ledge] (Nb) -- (Nc);
+          \draw [ledge] (Nb) -- (Nd);
+          \draw [ledge] (Nc) -- (Nd);
+          \draw [ledge] (Nd) -- (Ne);
+          \draw [ledge] (Nb) -- (Ne);
+        }
+        \visible<4-> {
+          \draw [edge] (Na) -- (Nb);
+          \draw [edge] (Na) -- (Ne);
+          \draw [edge] (Nb) -- (Nc);
+          \draw [edge] (Nb) -- (Nd);
+          \draw [edge] (Nc) -- (Nd);
+          \draw [edge] (Nd) -- (Ne);
+          \draw [ledge] (Nb) -- (Ne);
+        }
 
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+        \visible<3> {
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        }
+        \visible<4-> {
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        }
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N2) at (9.5,  0) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N7) at (5.5,  0) {\vphantom{0}};
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N8) at (5.5, -2) {\vphantom{0}};
         \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N9) at (5.5, -4) {\vphantom{0}};
 
+        \visible<3> {
+          \draw [ledge] (N1) -- (N3);
+          \draw [ledge] (N1) -- (N4);
+          \draw [ledge] (N3) -- (N5);
+          \draw [ledge] (N3) -- (N6);
+          \draw [ledge] (N4) -- (N6);
+          \draw [ledge] (N5) -- (N6);
+        }
+        \visible<4-> {
+          \draw [edge] (N1) -- (N3);
+          \draw [edge] (N1) -- (N4);
+          \draw [edge] (N3) -- (N5);
+          \draw [edge] (N3) -- (N6);
+          \draw [edge] (N4) -- (N6);
+          \draw [edge] (N5) -- (N6);
+        }
         \draw [ledge] (N1) -- (N2);
-        \draw [edge] (N1) -- (N3);
-        \draw [edge] (N1) -- (N4);
-        \draw [ledge] (N2) -- (N4);
-        \draw [edge] (N3) -- (N5);
-        \draw [edge] (N3) -- (N6);
-        \draw [edge] (N4) -- (N6);
-        \draw [edge] (N5) -- (N6);
-        \draw [ledge] (N2) to [in=45, out=315] (N6);
         \draw [ledge] (N1) -- (N7);
+        \draw [ledge] (N2) -- (N4);
+        \draw [ledge] (N2) to [in=45, out=315] (N6);
         \draw [ledge] (N5) -- (N9);
         \draw [ledge] (N7) -- (N8);
         \draw [ledge] (N8) -- (N9);
-    \end{tikzpicture}\end{center}
+      \end{tikzpicture}\end{center}
+    }
   \end{column}
 \end{columns}
+\vspace{1cm}
+\begin{itemize}
+  \visible<5->{\item Each of these has a connected version}
+  \visible<5->{\item Directed, undirected variants}
+  \visible<5->{\item Edge and vertex labels}
+  \visible<5->{\item I'll mainly talk about induced, unlabelled, unconnected,
+      not-necessarily-connected}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{An Application in Chemistry}
+  \centering
+  \includegraphics*[keepaspectratio=true,width=0.6\textwidth]{raymond-willett-screenshot}
+  \begin{itemize}
+    \item Max Common Subgraph algorithms can be used to determine the degree of
+      similarity between two molecules
+    \item Image from (Raymond and Willett, 2002)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{A Few Impractical Uses for a MCS Solvers}
+    \begin{itemize}
+        \item To find a maximum clique in graph $G$ with $n$ vertices,
+          run MCIS($K_n$, $G$)
+    \end{itemize}
+    \begin{center}\begin{tikzpicture}[scale=0.45]
+        \visible<2-> {
+          \visible<-2> {
+            \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {\vphantom{0}};
+            \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {\vphantom{0}};
+            \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {\vphantom{0}};
+          }
+          \visible<3-> {
+            \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {\vphantom{0}};
+            \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {\vphantom{0}};
+            \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {\vphantom{0}};
+          }
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2) {\vphantom{0}};
+
+          \draw [ledge] (Nb) -- (Ne);
+          \draw [ledge] (Nc) -- (Ne);
+          \draw [ledge] (Nd) -- (Ne);
+          \visible<-2> {
+            \draw [ledge] (Nb) -- (Nc);
+            \draw [ledge] (Nc) -- (Nd);
+            \draw [ledge] (Nb) -- (Nd);
+          }
+          \visible<3-> {
+            \draw [edge] (Nb) -- (Nc);
+            \draw [edge] (Nc) -- (Nd);
+            \draw [edge] (Nb) -- (Nd);
+          }
+        }
+
+        \visible<-2> {
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+          \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        }
+        \visible<3-> {
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {\vphantom{0}};
+          \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {\vphantom{0}};
+        }
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {\vphantom{0}};
+
+        \visible<-2> {
+          \draw [ledge] (N3) -- (N5);
+          \draw [ledge] (N3) -- (N6);
+          \draw [ledge] (N5) -- (N6);
+        }
+        \visible<3-> {
+          \draw [edge] (N3) -- (N5);
+          \draw [edge] (N3) -- (N6);
+          \draw [edge] (N5) -- (N6);
+        }
+        \draw [ledge] (N4) -- (N6);
+    \end{tikzpicture}\end{center}
+    \begin{itemize}
+      \visible<4-> {
+        \item To test for a Hamiltonian cycle in graph $G$ with $n$ vertices,
+            run MCPS($C_n$, $G$) and check if the result has $n$ edges.
+      }
+      \visible<5-> {
+        \item Induced subgraph isomorphism: run MCIS, check if all vertices in the smaller graph are used
+      }
+      \visible<6-> {
+        \item Non-induced subgraph isomorphism: run MCPS, check if all edges in the smaller graph are used
+      }
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Previous Algorithms}
-
     \begin{itemize}
         \item \textbf{Constraint programming} --- good for unlabelled instances
             \begin{itemize}
@@ -295,18 +474,24 @@ Prosser, and \\ James Trimble}
         \item \textbf{Clique encoding} --- good for labelled instances
         \item $\mathbf{k{\downarrow}}$ --- good for big instances
     \end{itemize}
+\end{frame}
 
+\begin{frame}{Clique Encoding}
+  \begin{figure}[]
+  \centering
+      \exampleG
+      \qquad
+      \exampleH
+  \end{figure}
 \end{frame}
 
 \begin{frame}{CP Model}
-
     \begin{itemize}
         \item A variable for each vertex in the pattern graph
         \item A value for each vertex in the target graph, and $\bot$
         \item Soft all-different constraint
         \item Maximise the number of non-$\bot$ values
     \end{itemize}
-
 \end{frame}
 
 \begin{frame}{The Observation Behind Our Algorithm}
