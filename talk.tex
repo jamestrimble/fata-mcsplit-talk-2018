@@ -20,6 +20,8 @@
 \usetikzlibrary{decorations.pathreplacing, decorations.pathmorphing, shapes.misc}
 \usetikzlibrary{tikzmark}
 
+\definecolor{lightgrey}{rgb}{0.8, 0.8, 0.8}
+
 \definecolor{uofguniversityblue}{rgb}{0, 0.219608, 0.396078}
 
 \definecolor{uofgheather}{rgb}{0.356863, 0.32549, 0.490196}
@@ -412,7 +414,7 @@ Prosser, and \\ James Trimble}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{A Few Impractical Uses for a MCS Solvers}
+\begin{frame}{Reductions from a Few Other Problems}
     \begin{itemize}
         \item To find a maximum clique in graph $G$ with $n$ vertices,
           run MCIS($K_n$, $G$)
@@ -495,6 +497,59 @@ Prosser, and \\ James Trimble}
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Mappings}
+    \begin{itemize}
+      \item A common subgraph can be viewed as a mapping from a subset of $G$'s vertices
+        to a subset of $H$'s vertices.
+      \item In this example, we have
+        $a\rightarrow 1$,
+        $b\rightarrow 3$,
+        $c\rightarrow 5$,
+        $d\rightarrow 6$
+        (or simply $(a1, b3, c5, d6)$)
+    \end{itemize}
+    \begin{center}\begin{tikzpicture}[scale=0.45]
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0) {a};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {b};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {c};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {d};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2) {e};
+
+        \draw [edge] (Na) -- (Nb);
+        \draw [edge] (Nb) -- (Nc);
+        \draw [edge] (Nc) -- (Nd);
+        \draw [edge] (Nb) -- (Nd);
+        \draw [ledge] (Na) -- (Ne);
+        \draw [ledge] (Nb) -- (Ne);
+        \draw [ledge] (Nd) -- (Ne);
+
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N1) at (7.5,  0) {1};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N3) at (7.5, -2) {3};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N5) at (7.5, -4) {5};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (N6) at (9.5, -4) {6};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N2) at (9.5,  0) {2};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N4) at (9.5, -2) {4};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N7) at (5.5,  0) {7};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N8) at (5.5, -2) {8};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (N9) at (5.5, -4) {9};
+
+        \draw [edge] (N1) -- (N3);
+        \draw [edge] (N3) -- (N5);
+        \draw [edge] (N3) -- (N6);
+        \draw [edge] (N5) -- (N6);
+        \draw [ledge] (N1) -- (N2);
+        \draw [ledge] (N1) -- (N4);
+        \draw [ledge] (N1) -- (N7);
+        \draw [ledge] (N2) -- (N4);
+        \draw [ledge] (N2) to [in=45, out=315] (N6);
+        \draw [ledge] (N4) -- (N6);
+        \draw [ledge] (N5) -- (N9);
+        \draw [ledge] (N7) -- (N8);
+        \draw [ledge] (N8) -- (N9);
+    \end{tikzpicture}\end{center}
+\end{frame}
+
 \begin{frame}{Clique Encoding}
   \begin{figure}[]
   \centering
@@ -511,25 +566,116 @@ Prosser, and \\ James Trimble}
         \item A variable for each vertex in the pattern graph
         \item A value for each vertex in the target graph, and $\bot$
         \item Soft all-different constraint
+        \item Edge constraints
         \item Maximise the number of non-$\bot$ values
     \end{itemize}
 \end{frame}
 
+\begin{frame}{CP Model: Example}
+  \begin{figure}
+    \centering
+    \tikz {
+      \only<1> {
+        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+                clockwise=5] {
+                    1,2,3,4,5;
+            1--4; 1--5; 2--3; 2--5; 3--5;
+        };
+      }
+      \only<2-> {
+        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+                clockwise=5] {
+                  1[fill=uofgpumpkin],2,3,4,5;
+            1--4; 1--5; 2--3; 2--5; 3--5;
+        };
+      }
+    }
+    \hspace{.5cm}
+    \tikz {
+      \only<1> {
+        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+                clockwise=6, phase=60] {
+                    a,b,c,d,e,f;
+            a--b; a--c; a--e; b--d; b--f; c--d; c--e; c--f; d--f; e--f;
+        };
+      }
+      \only<2-> {
+        \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
+                clockwise=6, phase=60] {
+                  a[fill=uofgpumpkin],b,c,d,e,f;
+            a--b; a--c; a--e; b--d; b--f; c--d; c--e; c--f; d--f; e--f;
+        };
+      }
+    }
+  \end{figure}
+
+  \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+      Initial domains:
+      \begin{gather*}
+        1: a b c d e f \bot \\
+        2: a b c d e f \bot \\
+        3: a b c d e f \bot \\
+        4: a b c d e f \bot \\
+        5: a b c d e f \bot
+      \end{gather*}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      After tentative assignment $1a$:
+        \only<1> {
+          \begin{gather*}
+            2: a b c d e f \bot \\
+            3: a b c d e f \bot \\
+            4: a b c d e f \bot \\
+            5: a b c d e f \bot
+          \end{gather*}
+        }
+        \only<2> {
+          \begin{gather*}
+            2: {\color{lightgray}a} b c d e f \bot \\
+            3: {\color{lightgrey}a} b c d e f \bot \\
+            4: {\color{lightgrey}a} b c d e f \bot \\
+            5: {\color{lightgrey}a} b c d e f \bot
+          \end{gather*}
+        }
+        \only<3> {
+          \begin{gather*}
+            2: {\color{lightgray}a} {\color{lightgrey}b} {\color{lightgrey}c} d {\color{lightgrey}e} f \bot \\
+            3: {\color{lightgrey}a} {\color{lightgrey}b} {\color{lightgrey}c} d {\color{lightgrey}e} f \bot \\
+            4: {\color{lightgrey}a} b c {\color{lightgrey}d} e {\color{lightgrey}f} \bot \\
+            5: {\color{lightgrey}a} b c {\color{lightgrey}d} e {\color{lightgrey}f} \bot
+          \end{gather*}
+        }
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}{The Observation Behind Our Algorithm}
 
-    \begin{itemize}
-        \item During search any two domains are identical or
-            disjoint (with the exception of $\bot$)
-    \end{itemize}
+  \textbf{During search any two domains are identical or disjoint (with the exception of $\bot$)}
 
+  \begin{gather*}
+    2: d f \bot \\
+    3: d f \bot \\
+    4: b c e \bot \\
+    5: b c e \bot
+  \end{gather*}
+
+  Can be represented as 
+  \begin{gather*}
+    2 3 : d f \\
+    4 5 : b c e
+  \end{gather*}
+
+  (with $\bot$ implicitly present in domains)
 \end{frame}
 
 \begin{frame}{The McSplit Algorithm}
     \begin{itemize}
-        \item We can use a compact backtrackable data structure which splits vertices into
+        \item We can use a compact data structure which splits vertices into
             partitions
-        \item Propagation is just refining partitions
-        \item Soft all-different can be calculated by counting rather than matching
+        \item Time per search node is linear in the number of vertices
+        \item Upper bound can be calculated by counting rather than matching
     \end{itemize}
 \end{frame}
 
@@ -595,6 +741,9 @@ Prosser, and \\ James Trimble}
         \item Maximum common \textbf{connected} subgraph
     \end{itemize}
 
+\end{frame}
+
+\begin{frame}{Extra Slides}
 \end{frame}
 
 \begin{frame}{Branching Heuristics}
