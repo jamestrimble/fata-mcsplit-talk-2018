@@ -73,22 +73,40 @@
 \usetikzlibrary{graphs}
 
 \newcommand{\exampleG} {
-    \tikz {
+  \tikz {
+    \visible<-2> {
         \graph [nodes={draw, circle, minimum width=.4cm, inner sep=1pt}, circular placement, radius=0.6cm,
-                clockwise=5] {
-                    1,2,3,4,5;
-            1--4; 1--5; 2--3; 2--5; 3--5;
+                clockwise=4, phase=45] {
+                  1[fill=white],2[fill=white],3[fill=white],4[fill=white];
+            1--4; 2--3; 2--4; 3--4;
         };
     }
+    \visible<3> {
+        \graph [nodes={draw, circle, minimum width=.4cm, inner sep=1pt}, circular placement, radius=0.6cm,
+                clockwise=4, phase=45] {
+                  1[fill=uofgpumpkin],2[fill=white],3[fill=uofgpumpkin],4[fill=uofgpumpkin];
+            1--4; 2--3; 2--4; 3--4;
+        };
+    }
+  }
 }
 \newcommand{\exampleH} {
-    \tikz {
+  \tikz {
+    \visible<-2> {
         \graph [nodes={draw, circle, minimum width=.4cm, inner sep=1pt}, circular placement, radius=0.6cm,
-                clockwise=6, phase=60] {
-                    a,b,c,d,e,f;
-            a--b; a--c; a--e; b--d; b--f; c--d; c--e; c--f; d--f; e--f;
+                clockwise=4, phase=45] {
+                  a[fill=white],b[fill=white],c[fill=white],d[fill=white];
+            a--b; b--c; c--d; d--a;
         };
     }
+    \visible<3> {
+        \graph [nodes={draw, circle, minimum width=.4cm, inner sep=1pt}, circular placement, radius=0.6cm,
+                clockwise=4, phase=45] {
+                  a[fill=uofgpumpkin],b[fill=white],c[fill=uofgpumpkin],d[fill=uofgpumpkin];
+            a--b; b--c; c--d; d--a;
+        };
+    }
+  }
 }
 
 \setbeamertemplate{title page}
@@ -468,11 +486,11 @@ Prosser, and \\ James Trimble}
 
 \begin{frame}{Previous Algorithms}
     \begin{itemize}
+        \item \textbf{Clique encoding} --- good for labelled instances
         \item \textbf{Constraint programming} --- good for unlabelled instances
             \begin{itemize}
                 \item Using a dedicated implementation, not a CP toolkit
             \end{itemize}
-        \item \textbf{Clique encoding} --- good for labelled instances
         \item $\mathbf{k{\downarrow}}$ --- good for big instances
     \end{itemize}
 \end{frame}
@@ -524,7 +542,6 @@ Prosser, and \\ James Trimble}
             \item if that fails, look for a common subgraph that uses all but one of the vertices
             \item \dots and so on
           \end{itemize}
-        \item TODO: binary search???
     \end{itemize}
 \end{frame}
 
@@ -574,46 +591,10 @@ Prosser, and \\ James Trimble}
 
     \begin{itemize}
         \item A detailed explanation of the algorithm
-        \item Interesting things about dual viewpoint heuristics
         \item Extensions to labelled and directed graphs
         \item Maximum common \textbf{connected} subgraph
     \end{itemize}
 
-\end{frame}
-
-\begin{frame}{McSplit for Maximum Common Partial Subgraph?}
-    \begin{itemize}
-        \item 
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[plain,noframenumbering]
-    \begin{center}
-        \vspace*{4em}
-        \url{http://www.dcs.gla.ac.uk/~ciaran} \\
-        \vspace{0.2em}
-        \href{mailto:ciaran.mccreesh@glasgow.ac.uk}{\nolinkurl{ciaran.mccreesh@glasgow.ac.uk}} \\
-        \vspace{2em}
-        \textcolor{uofgpillarbox}{
-            Are you finding Melbourne to be a bit too warm and dry?  We are hiring a postdoc to work on
-            high level constraint modelling for graph problems as part of a ``subgraphs modulo
-            theories'' project:} \\
-        \vspace{0.2em}
-        \href{https://www.vacancies.st-andrews.ac.uk/}{\nolinkurl{https://www.vacancies.st-andrews.ac.uk/}}
-        \\ reference AR1972SB
-    \end{center}
-
-    \begin{tikzpicture}[remember picture, overlay]
-        \node at (current page.north west) {
-            \begin{tikzpicture}[remember picture, overlay]
-                \fill [fill=uofguniversityblue, anchor=north west] (0, 0) rectangle (\paperwidth, -2.6cm);
-            \end{tikzpicture}
-        };
-
-        \node (logo) [anchor=north east, shift={(-0.6cm,-0.6cm)}] at (current page.north east) {
-            \includegraphics*[keepaspectratio=true,scale=0.7]{UoG_keyline.pdf}
-        };
-    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Branching Heuristics}
