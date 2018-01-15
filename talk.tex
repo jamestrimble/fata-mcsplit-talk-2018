@@ -399,8 +399,7 @@ Prosser, and \\ James Trimble}
   \visible<5->{\item Each of these has a connected version}
   \visible<5->{\item Directed, undirected variants}
   \visible<5->{\item Edge and vertex labels}
-  \visible<5->{\item I'll mainly talk about induced, unlabelled, unconnected,
-      not-necessarily-connected}
+  \visible<5->{\item I'll mainly talk about the plain version of the induced problem}
 \end{itemize}
 \end{frame}
 
@@ -682,7 +681,7 @@ Prosser, and \\ James Trimble}
 \begin{frame}{Up or Down?}
     \begin{itemize}
         \item In our branch and bound algorithm, we try to find larger and larger common subgraphs
-        \item We can go in the opposite direction (``McSplit-down'')
+        \item We can go in the opposite direction (``McSplit$\downarrow$'')
           \begin{itemize}
             \item first look for a common subgraph that uses all vertices in the smaller graph
             \item if that fails, look for a common subgraph that uses all but one of the vertices
