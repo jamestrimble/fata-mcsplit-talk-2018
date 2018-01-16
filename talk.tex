@@ -409,7 +409,7 @@ Prosser, and \\ James Trimble}
   \begin{itemize}
     \item Max Common Subgraph algorithms can be used to determine the degree of
       similarity between two molecules
-    \item Image from (Raymond and Willett, 2002)
+    \item Image from Raymond and Willett (2002)
   \end{itemize}
 \end{frame}
 
@@ -509,11 +509,11 @@ Prosser, and \\ James Trimble}
         (or simply $(a1, b3, c5, d6)$)
     \end{itemize}
     \begin{center}\begin{tikzpicture}[scale=0.45]
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0) {a};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {b};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {c};
-        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {d};
-        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2) {e};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Na) at (1,  0) {\vphantom{0}a};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nb) at (1, -2) {\vphantom{0}b};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nc) at (1, -4) {\vphantom{0}c};
+        \node[draw, circle, fill=uofgpumpkin, inner sep=2.5pt, font=\bfseries] (Nd) at (3, -4) {\vphantom{0}d};
+        \node[draw, circle, fill=white, inner sep=2.5pt, font=\bfseries] (Ne) at (3, -2) {\vphantom{0}e};
 
         \draw [edge] (Na) -- (Nb);
         \draw [edge] (Nb) -- (Nc);
@@ -594,7 +594,7 @@ Prosser, and \\ James Trimble}
       \only<1> {
         \graph [nodes={draw, circle, minimum width=.5cm, inner sep=1pt}, circular placement, radius=0.8cm,
                 clockwise=6, phase=60] {
-                    a,b,c,d,e,f;
+                  a,b,c,d,e,f;
             a--b; a--c; a--e; b--d; b--f; c--d; c--e; c--f; d--f; e--f;
         };
       }
@@ -732,14 +732,20 @@ Prosser, and \\ James Trimble}
         \input{gen-graph-sip-james-versus-kdown-nodes-scatter}
 \end{nearlyplainframe}
 
-\begin{frame}{In the Paper}
+%\begin{frame}{In the Paper}
+%    \begin{itemize}
+%        \item A detailed explanation of the algorithm
+%        \item Extensions to labelled and directed graphs
+%        \item Maximum common \textbf{connected} subgraph
+%    \end{itemize}
+%\end{frame}
 
+\begin{frame}{Future Work}
     \begin{itemize}
-        \item A detailed explanation of the algorithm
-        \item Extensions to labelled and directed graphs
-        \item Maximum common \textbf{connected} subgraph
+        \item A version of McSplit for max common partial subgraph
+        \item Weighted max common subgraph
+        \item Graph edit distance
     \end{itemize}
-
 \end{frame}
 
 \begin{frame}{Extra Slides}
